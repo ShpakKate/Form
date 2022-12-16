@@ -1,0 +1,77 @@
+$text-color: #e5e5e5;
+
+.header {
+    height: 2.5rem;
+    width: auto;
+    background-color: $text-color;
+    border-bottom: 2px solid #c6c7c8;
+}
+
+.title {
+    color: $text-color;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+
+}
+
+.form {
+    margin-left: 1rem;
+    padding: 2rem 1rem 2rem 2rem;
+    background-color: #102b96;
+}
+
+.fields {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0.7rem 0;
+
+    &:last-of-type {
+        padding: 0;
+    }
+}
+
+.lable-field {
+    width: 33%;
+}
+
+.input-field {
+    width: 33%;
+}
+
+.input-style {
+    height: 1.8rem;
+    width: 100%;
+    min-width: 10rem;
+}
+
+.accepted {
+    min-width: 1.8rem !important;
+    width: auto !important;
+}
+
+.input-text {
+    color: $text-color;
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.btnValiadate {
+    width: 5rem;
+    height: 1.8rem;
+    border-radius: 0.3rem;
+    border-color: transparent;
+    background-color: #efefef;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+}
+
+.error {
+    width: 34%;
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-right: 0;
+    text-align: end;
+    color: #ff0000;
+}
