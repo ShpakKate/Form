@@ -1,48 +1,7 @@
-import ('./scss/main.scss')
 
-let form = document.querySelector('form');
-let btnValiadate = form.querySelector('.btnValiadate');
-let login = form.querySelector('.login');
-let email = form.querySelector('.email');
-let password = form.querySelector('.password');
-let passwordConfirm = form.querySelector('.confirm-password');
-let expirience = form.querySelector('.expirience');
-let checkBox = form.querySelector('.accepted')
-let inputFields = form.querySelectorAll('.input-style');
-let elemFields = form.querySelectorAll('.fields');
 
-function createElement(tagName, classList,text) {
-    const element = document.createElement(tagName);
-    for ( el of classList) {
-        element.classList.add(el);
-        element.innerHTML = text;
-    }
-    return element;
-}
 
-function errorMessage() {
-    let errors = form.querySelectorAll('.error');
 
-    for ( let i = 0; errors.length > i; i++) {
-        errors[i].remove();
-    }
-}
-
-function loginMessage () {
-    if ( !login.value ) {
-        let errorText = createElement('div',['error'],'this field is requiered');
-        login.parentElement.insertAdjacentElement('afterend', errorText);
-    } 
-    else {
-        let arrLogin = login.value.split('');
-
-        if ( arrLogin.length < 4 && arrLogin.length > 0 ) {
-            let errorText = createElement('div',['error'],'min length this field is 3');
-            login.parentElement.insertAdjacentElement('afterend', errorText);
-        }
-        login.value = '';
-    }
-}
 
 function emailMessage() {
     if ( !email.value ) {
@@ -103,18 +62,8 @@ function acceptedMessage() {
     }
 }
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
 
-    errorMessage();
-
-    loginMessage();
-
-    emailMessage();
-    
-    passwordMessage();
-
-    expirienceMessage();
-
-    acceptedMessage();
-});
+emailMessage();
+passwordMessage();
+expirienceMessage();
+acceptedMessage();
