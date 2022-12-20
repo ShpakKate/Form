@@ -1,4 +1,5 @@
 $text-color: #e5e5e5;
+$red-color: #ff0000;
 
 .header {
     height: 2.5rem;
@@ -16,7 +17,6 @@ $text-color: #e5e5e5;
 }
 
 .form {
-    margin-left: 1rem;
     padding: 2rem 1rem 2rem 2rem;
     background-color: #102b96;
 }
@@ -32,8 +32,9 @@ $text-color: #e5e5e5;
     }
 }
 
-.lable-field, .input-field {
-    width: 30%; 
+.lable-field,
+.input-field {
+    width: 30%;
 }
 
 .input-style {
@@ -53,8 +54,16 @@ $text-color: #e5e5e5;
     font-weight: bold;
 }
 
+.error.required {
+    position: absolute;
+    left: 1rem;
+}
+
 .error.custom {
-    margin-top: -2rem;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 1rem;
 }
 
 .btnValiadate {
@@ -70,19 +79,18 @@ $text-color: #e5e5e5;
 
 .control-wrapper {
     width: 40%;
-    margin-right: 0;
-    text-align: end;
     font-size: 1.7rem;
     font-weight: bold;
-    color: #ff0000;
+    color: $red-color;
+    position: relative;
 }
 
-.error { 
+.error {
     visibility: hidden;
 }
 
 .error-border {
-    border: 1px #ff0000 solid; 
+    border: 1px $red-color solid;
 }
 
 .fields.field-error {

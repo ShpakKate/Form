@@ -1,107 +1,113 @@
-import ('./scss/main.scss')
+import('./scss/main.scss')
 
-function addError(element,type) {    
+function addError(element, type) {
     element.closest('.fields').classList.add(type, 'field-error');
 }
 
 function addRequiredError(element) {
-    addError(element,'required');
+    addError(element, 'required');
 }
 
 function addCustomError(...element) {
-    [...element].forEach(e => addError(e,'custom'))
+    [...element].forEach(e => addError(e, 'custom'))
+}
+
+function emptyValiadate(elements) {
+    const emptyInputs = Array.from(elements).filter(input => input.value === '');
+
+    elements.forEach(function (input) {
+        if (input.value === "") {
+            addRequiredError(input);
+        }
+    });
+
+    return emptyInputs.length === 0;
+}
+
+function loginValidate(el) {
+    const arrLogin = el.value.split('');
+
+    if (arrLogin.length < 4 && arrLogin.length > 0) {
+        addCustomError(el);
+        return false;
+    }
+    return true;
+}
+
+function emailInput(email) {
+    const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+    return re.test(email);
+}
+
+function emailValidate(el) {
+    if (!emailInput(el.value) && el.value != 0) {
+        addCustomError(el);
+        return false;
+    }
+    return true;
+}
+
+function passwordValidate(el1, el2) {
+    if (!(el1.value === el2.value) && !(el1.value === '' || el2.value === '')) {
+        addCustomError(el1, el2);
+        return false;
+    }
+    return true;
+}
+
+function expirienceValidate(el) {
+    if (!(Number(el.value) >= 0 && Number(el.value) < 30)) {
+        addCustomError(el);
+        return false;
+    }
+    return true;
+}
+
+function acceptedValidate(el) {
+    if (!el.checked) {
+        addCustomError(el);
+        return false;
+    }
+    return true;
+}
+
+function clearErrosMessages(el) {
+    document.querySelectorAll(el).forEach(e => {
+        e.classList.remove('field-error', 'required', 'custom');
+    })
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    
-    let form = document.querySelector('.form');
-    let login = form.querySelector('.login');
-    let emailVal = form.querySelector('.email');
-    let password = form.querySelector('.password');
-    let passwordConfirm = form.querySelector('.confirm-password');
-    let expirience = form.querySelector('.expirience');
-    let checkBox = form.querySelector('.accepted');
-    let inputFields = form.querySelectorAll('.input-style');
-    
-    function emptyValiadate() {
-        let emptyInputs = Array.from(inputFields).filter(input => input.value === '');
-    
-        inputFields.forEach( function(input) {
-            if ( input.value === "" ) {
-                addRequiredError(input);
-            }
-        });
-    
-        return emptyInputs.length === 0;
-    }
-    
-    function loginValidate() {
-        let arrLogin = login.value.split('');
-    
-        if ( arrLogin.length < 4 && arrLogin.length > 0 ) {
-            addCustomError(login);
-            return false;
-        }
-        return true;
-    }
-    
-    function emailInput(email) {
-        const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-        return re.test(email);
-    }
-    
-    function emailValidate() {
-        if (!emailInput(emailVal.value) && emailVal.value != 0) {
-            addCustomError(emailVal);
-            return false;
-        }
-        return true;
-    }
-    
-    function passwordValiadate() {
-        if ( !(password.value == passwordConfirm.value) && !(password.value === '' || passwordConfirm.value === '')) {
-            addCustomError(password, passwordConfirm);
-            return false; 
-        }
-        return true;
-    }
-    
-    function expirienceValidate() {
-        if ( !(Number(expirience.value) >= 0 && Number(expirience.value) < 30) ) {
-            addCustomError(expirience);
-           return false;
-        }
-        return true;
-    }
 
-    function acceptedValidate() {
-        if ( !checkBox.checked) {
-            addCustomError(checkBox);
-            return false;
-        }
-        return true;
-    }
+    const form = document.querySelector('.form');
+    const login = form.querySelector('.login');
+    const emailVal = form.querySelector('.email');
+    const password = form.querySelector('.password');
+    const passwordConfirmElement = form.querySelector('.confirm-password');
+    const expiriencePerson = form.querySelector('.expirience');
+    const checkBox = form.querySelector('.accepted');
+    const inputFields = form.querySelectorAll('.input-style');
 
     form.addEventListener('submit', (event) => {
 
         event.preventDefault();
 
-        document.querySelectorAll('.fields.field-error').forEach( e => {
-            e.classList.remove('field-error', 'required', 'custom');
-        })
+        clearErrosMessages('.fields.field-error');
 
-        if ( [
-        emptyValiadate(),
-        loginValidate(),
-        emailValidate(), 
-        passwordValiadate(), 
-        expirienceValidate(), 
-        acceptedValidate()].some(result => !result)
+        if ([
+            emptyValiadate(inputFields),
+            loginValidate(login),
+            emailValidate(emailVal),
+            passwordValidate(password, passwordConfirmElement),
+            expirienceValidate(expiriencePerson),
+            acceptedValidate(checkBox)].some(result => !result)
         ) {
             console.log("validation failed");
             return;
         }
         console.log("validation success");
+
+        event.target.reset();
 
     });
 });
