@@ -47,9 +47,9 @@ function emailValidate(el) {
     return true;
 }
 
-function passwordValidate(el1, el2) {
-    if (!(el1.value === el2.value) && !(el1.value === '' || el2.value === '')) {
-        addCustomError(el1, el2);
+function passwordValidate(el, targetEl) {
+    if (!(el.value === targetEl.value) && !(el.value === '' || targetEl.value === '')) {
+        addCustomError(el, targetEl);
         return false;
     }
     return true;
