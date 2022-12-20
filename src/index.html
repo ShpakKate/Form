@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="header"></div>
-    <form class="form">
+    <form class="form" autocomplete="off">
         <h1 class="title">Enter your personal EPAM info</h1>
         <div class="fields">
             <div class="lable-field">
@@ -17,22 +17,31 @@
             <div class="input-field">
                 <input class="input-style login" type="login">
             </div>
+            <div class="control-wrapper error">
+                <div class="error required" minlength="3">this field is required</div>
+                <div class="error custom">min length this field is 3</div></div>
         </div>
         <div class="fields">
             <div class="lable-field">
                 <lable class="input-text">Email</lable>
             </div>
             <div class="input-field">
-                <input class="input-style email" type="email">
+                <input class="input-style email" id="ace-off" name="ace-off"  autocomplete="false" type="text">
             </div>
+            <div class="control-wrapper error">
+                <div class="error required">this field is required</div>
+                <div class="error custom">must be like user@userename</div></div>
         </div>
         <div class="fields">
             <div class="lable-field">
-                <lable class="input-text">Password</lable>
+                <lable class="input-text" for="acp-off">Password</lable>
             </div>
             <div class="input-field">
-                <input class="input-style password" type="password">
+                <input class="input-style password" id="acp-off" name="acp-off" autocomplete="do-not-autofill" type="password" >
             </div>
+            <div class="control-wrapper error">
+                <div class="error required">this field is required</div>
+                <div class="error custom">must equals</div></div>
         </div>
         <div class="fields">
             <div class="lable-field">
@@ -40,6 +49,10 @@
             </div>
             <div class="input-field">
                 <input class="input-style confirm-password" type="password">
+            </div>
+            <div class="control-wrapper error">
+                <div class="error required">this field is required</div>
+                <div class="error custom">must equals</div>
             </div>
         </div>
         <div class="fields">
@@ -49,6 +62,10 @@
             <div class="input-field">
                 <input class="input-style expirience" type="expirience">
             </div>
+            <div class="control-wrapper error">
+                <div class="error required">this field is required</div>
+                <div class="error custom">must be number or DONT LIE ME!</div>
+            </div>
         </div>
         <div class="fields">
             <div class="lable-field">
@@ -56,6 +73,9 @@
             </div>
             <div class="input-field">
                 <input class="input-style accepted" type="checkbox">
+            </div>
+            <div class="control-wrapper error">
+                <div class="error custom">you must accept term for continue</div>
             </div>
         </div>
         <input type="submit" class="btnValiadate" value="Submit">

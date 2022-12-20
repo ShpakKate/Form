@@ -25,19 +25,15 @@ $text-color: #e5e5e5;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    padding: 0.7rem 0;
+    margin-bottom: 1rem;
 
     &:last-of-type {
         padding: 0;
     }
 }
 
-.lable-field {
-    width: 33%;
-}
-
-.input-field {
-    width: 33%;
+.lable-field, .input-field {
+    width: 30%; 
 }
 
 .input-style {
@@ -57,6 +53,10 @@ $text-color: #e5e5e5;
     font-weight: bold;
 }
 
+.error.custom {
+    margin-top: -2rem;
+}
+
 .btnValiadate {
     width: 5rem;
     height: 1.8rem;
@@ -65,13 +65,36 @@ $text-color: #e5e5e5;
     background-color: #efefef;
     font-size: 1.3rem;
     margin-top: 1rem;
+    cursor: pointer;
 }
 
-.error {
-    width: 34%;
-    font-size: 1.7rem;
-    font-weight: bold;
+.control-wrapper {
+    width: 40%;
     margin-right: 0;
     text-align: end;
+    font-size: 1.7rem;
+    font-weight: bold;
     color: #ff0000;
+}
+
+.error { 
+    visibility: hidden;
+}
+
+.error-border {
+    border: 1px #ff0000 solid; 
+}
+
+.fields.field-error {
+    &.required {
+        .error.required {
+            visibility: visible;
+        }
+    }
+
+    &.custom {
+        .error.custom {
+            visibility: visible;
+        }
+    }
 }
