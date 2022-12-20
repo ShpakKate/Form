@@ -50,12 +50,6 @@ module.exports = {
             filename: './index.html'
         }),
         new webpack.HotModuleReplacementPlugin(),
-        
-        new CopyPlugin({
-            patterns: [
-              { from: "src/images", to: "assets" },
-            ],
-          }),
     ],
     devServer: {
         static: {
@@ -64,7 +58,7 @@ module.exports = {
         liveReload: true,
         hot: false,
         compress: false,
-        port: 9000,
+        port: 9009,
         host: '0.0.0.0',
     },
     optimization: {
